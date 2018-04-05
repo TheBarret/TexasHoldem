@@ -25,10 +25,10 @@
                         Me.HandType = helper.GetHandType
                     End If
                 End Using
-                Using helper As New GameLogic(Me.Cards)
-                    Me.Highcard = helper.GetHighestCard
-                End Using
             Next
+    Using helper As New GameLogic(Me.Cards)
+        Me.Highcard = helper.GetHighestCard
+    End Using
         End If
     End Sub
 End Class
