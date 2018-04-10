@@ -9,7 +9,9 @@
                 Next
             Next
         End SyncLock
-        If (shuffle) Then Me.Shuffle()
+        If (shuffle) Then
+            Me.Shuffle()
+        End If
     End Sub
     Public Function Deal(Optional amount As Integer = 5) As List(Of Card)
         If (Me.Cards.Any AndAlso Me.Cards.Count >= 5) Then
@@ -23,7 +25,7 @@
     End Function
     Public Function Deal() As Card
         If (Me.Cards.Any) Then
-            Dim card As Card = Me.Cards.ElementAt(0)
+            Dim card As Card = Me.Cards.ElementAt(Randomizer.Number(0, Me.Cards.Count - 1))
             SyncLock Me.Cards
                 Me.Cards.Remove(card)
             End SyncLock
@@ -32,14 +34,14 @@
         Throw New Exception("Deck is empty")
     End Function
     Public Sub Shuffle()
-        Dim n, r As Integer, value As Card
+        Dim n, r As Integer, previous As Card
         n = Me.Cards.Count
         SyncLock Me.Cards
             For i As Integer = 0 To n - 1
                 r = i + Randomizer.Number(0, n - i)
-                value = Me.Cards(i)
+                previous = Me.Cards(i)
                 Me.Cards(i) = Me.Cards(r)
-                Me.Cards(r) = value
+                Me.Cards(r) = previous
             Next
         End SyncLock
     End Sub
