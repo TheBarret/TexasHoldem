@@ -23,7 +23,7 @@ Public Class Main
         Me.Players.Add(New Hand(Me.Deck.Deal(5)))
 
         '// Create table with additional 5 cards
-        Me.Table = New Hand(Me.Deck.Deal(2))
+        Me.Table = New Hand(Me.Deck.Deal(Randomizer.Number(1, 6)))
 
         Me.DisplayTable.Assign(Me.Table)
 
